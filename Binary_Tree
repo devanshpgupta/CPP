@@ -1,0 +1,98 @@
+
+#include<iostream>
+using namespace std;
+struct node
+{
+    int value;
+    node* left;
+    node* right;
+};
+class A
+{
+public:
+    node* create_node()
+    {
+        return new node;
+    };
+    void left_check(node* nleft)
+    {
+        char ch;
+        cout << "\nDoes " << nleft->value << " has left node(y/n):";
+        cin >> ch;
+        if(ch=='y')
+        {
+            nleft->left=create_node();
+            add_left_node(nleft->left);
+        }
+    };
+    void right_check(node* nright)
+    {
+        char ch;
+        cout << "\nDoes " << nright->value << " has right node(y/n):";
+        cin >> ch;
+        if(ch=='y')
+        {
+            nright->right=create_node();
+            add_right_node(nright->right);
+        }
+    }
+    void add_left_node(node* nleft)
+    {
+        cout << "\nPlease enter the left value:";
+        cin >> (nleft->value);
+        this->left_check(nleft);
+        this->right_check(nleft);
+    }
+    
+    void add_right_node(node* nright)
+    {
+        cout << "\nPlease enter the right value:";
+        cin >> (nright->value);
+        this->left_check(nright);
+        this->right_check(nright);
+        }
+
+     void display(node n1)
+     {
+       cout << "\nThe value is " << n1.value;
+       if(n1.left!=NULL)
+       display2(n1.left);
+       if(n1.right!=NULL)
+       display2(n1.right);
+     }
+     void display2(node* n1)
+     {
+       cout << "\nThe value is " << n1->value;
+       if(n1->left!=NULL)
+       display2(n1->left);
+       if(n1->right!=NULL)
+       display2(n1->right);
+     }
+};
+
+int main()
+{
+    node n1;
+    char ch;
+    A a;
+    cout << "\nPlease enter the first node:";
+    cin >> n1.value;
+    cout << "\nDoes " << n1.value << " has left node(y/n):";
+    cin >> ch;
+    if(ch=='y')
+    {
+        n1.left=a.create_node();
+        a.add_left_node(n1.left);
+    }
+    cout << "\nDoes " << n1.value << " has right node(y/n):";
+    cin >> ch;
+    if(ch=='y')
+    {
+        n1.right=a.create_node();
+        a.add_right_node(n1.right);
+    }
+    a.display(n1);
+    return 0;
+    
+}
+
